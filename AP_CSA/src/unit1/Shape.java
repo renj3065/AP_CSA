@@ -6,13 +6,36 @@ import java.awt.Graphics;
 
 public class Shape {
 	private int xPos;
-	 public Shape(int x, int y, int wid, int ht, Color col)
+	private int yPos;
+	private int width;
+	private int height;
+	private Color color;
+	public Shape(int x, int y, int wid, int ht, Color col)
 	   {
 			xPos = x;
-			private int yPos = y;
-			private int width = wid;
-			private int height=ht;
-			private Color shade=col;
+			yPos = y;
+			width = wid;
+			height=ht;
+			color=col;
 	   }
-	 
+	 public void draw(Graphics window)
+	   {
+	      window.setColor(color);
+	      window.fillRect(xPos, yPos, width, height);
+
+	      //draw whatever you want
+	      //    ^
+	      //  [ :: ]
+	      //    ()
+
+	   }
+
+	   //BONUS
+	   //add in set and get methods for all instance variables
+
+	   public String toString()
+	   {
+	   	return xPos+" "+yPos+" "+width+" "+height+" "+color;
+	   }
+
 }
