@@ -15,19 +15,21 @@ public class BigHouse extends Canvas
 
    public void paint( Graphics window )
    {
-      //call bigHouse
-	   bigHouse(window);
+	      window.setColor(Color.BLUE);
+
+	      window.drawString( "BIG HOUSE ", 50, 50 );
+
+	      window.setColor(Color.BLUE);
+	      window.fillRect( 200, 200, 400, 400 );
+	      window.setColor(Color.RED);
+
+	      window.fillRect(150, 100, 500, 100);
    }
 
    public void bigHouse( Graphics window )
    {
-      window.setColor(Color.BLUE);
 
-      window.drawString( "BIG HOUSE ", 50, 50 );
 
-      window.setColor(Color.BLUE);
-
-      window.fillRect( 200, 200, 400, 400 );
 
    }
 }
