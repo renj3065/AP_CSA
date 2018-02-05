@@ -36,11 +36,12 @@ public class ShapePanel extends JPanel
 
 
 		//instantiate a Shape
-		//tell your shape to draw
-
+		Shape watermelon1=new Shape(10,10,100,100,Color.GREEN,Color.RED);
+		watermelon1.draw(window);
 		//instantiate a Shape
 		//tell your shape to draw
-
+		Shape watermelon2=new Shape(200, 200,200,200,Color.CYAN,Color.ORANGE);
+		watermelon2.draw(window);
 		//instantiate a Shape
 		//tell your shape to draw
 	}

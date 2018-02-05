@@ -1,6 +1,8 @@
 package unit1;
 
 import javax.swing.JFrame;
+
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,7 +26,9 @@ public class GraphicsRunner extends JFrame
 		else if(x==3){
 			getContentPane().add(new Robot());
 		}
-			
+		else if(x==4){
+			getContentPane().add(new ShapePanel());
+		}
 		setVisible(true);
 	}
 
