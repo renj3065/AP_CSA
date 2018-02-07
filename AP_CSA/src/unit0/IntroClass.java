@@ -8,6 +8,10 @@ public class IntroClass {
 		String str="Hello";
 		System.out.println(str);
 		System.out.println(str.toUpperCase());
+		int x=1;
+			int y=2;
+			double z=x/y;
+		System.out.println(z);
 	}
 
 }
