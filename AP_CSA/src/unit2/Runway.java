@@ -8,7 +8,7 @@ public Runway(double spd, double accl){
 	accel=accl;
 	calculateRunway();
 }
-private void calculateRunway(){
+public void calculateRunway(){
 	System.out.println("Minimum runway length: "+speed*speed/(2*accel));
 }
 }
