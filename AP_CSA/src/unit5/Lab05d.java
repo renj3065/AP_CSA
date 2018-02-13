@@ -9,8 +9,8 @@ public class Lab05d
 	public static void main ( String[] args )
 	{
 		Scanner keyboard = new Scanner(System.in);
-		
-		
+
+
 		out.print("Enter an alphanumeric character :: ");
 		char letter = keyboard.next().charAt(0);
 		CharacterAnalyzer test = new CharacterAnalyzer(letter);
