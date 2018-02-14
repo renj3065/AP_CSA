@@ -19,7 +19,9 @@ public class Unit2Review {
 		System.out.println("Initial Investment:");
 		double initialAmount=keyboard.nextDouble();
 		SavingsAccount savAcc=new SavingsAccount(interestRate, initialAmount);
-		double compound=savAcc.addAmount();
+		savAcc.deposit(200);
+		savAcc.withdraw(100);
+		double compound=savAcc.addInterest();
 		System.out.printf("New amount: %.2f\n",compound);
 		
 		
