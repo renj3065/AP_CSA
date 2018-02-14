@@ -10,7 +10,7 @@ public class SavingsAccountTester {
 		double interestRate=10;
 		double initialAmount=1000;
 		SavingsAccount savAcc=new SavingsAccount(interestRate, initialAmount);
-		double compound=savAcc.addAmount();
+		double compound=savAcc.addInterest();
 		System.out.printf("New amount: %.2f\n",compound);
 	}
 
