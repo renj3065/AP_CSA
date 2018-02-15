@@ -12,6 +12,9 @@ public class IntroClass {
 			int y=2;
 			double z=x/y;
 		System.out.println(z);
+		String test="";
+		test=""+y;
+		System.out.println(test.length());
 	}
 
 }
