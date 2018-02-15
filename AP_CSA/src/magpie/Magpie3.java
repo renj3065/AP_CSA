@@ -56,7 +56,7 @@ public class Magpie3
 			response="Say something please.";
 		}
 		else if (findKeyword(statement,"name")>=0){
-			response="My name is Magpie. What's yours?";
+			response="My name is Magpie.";
 		}
 		else if (findKeyword(statement,"food")>=0){
 			response="You are making me hungry.";
