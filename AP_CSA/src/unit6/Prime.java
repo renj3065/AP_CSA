@@ -30,7 +30,9 @@ number=num;
 		int x=2;
 		boolean test=true;
 		while(test){
-			if (number==1 || number==2)
+			if (number==1)
+				return false;
+			if (number==2)
 				return true;
 			if(number%x==0)
 				return false;
