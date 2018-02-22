@@ -15,6 +15,10 @@ public class IntroClass {
 		String test="";
 		test=""+y;
 		System.out.println(test.length());
-	}
+		
+		String name="hello";
+		System.out.println(name.substring(5,7));	
+		System.out.println("L"=="L");
+		}
 
 }

@@ -39,13 +39,47 @@ public class RomanNumeral
 
 	public Integer getNumber()
 	{
-		for(int x=0; x<roman.length();x++){
-			int index=0;
-			//while(roman[x]!=LETTERS[index]){
-				//index++;
-			//}
+			number=0;
 			
-		}
+			for(int x=0;x<roman.length();x++){
+				int index=0;
+				int blockLength=0;
+				boolean condition=true;
+				String block=LETTERS[index];
+				
+				if (condition)
+					blockLength=block.length();
+				else 
+					blockLength=1;
+				//System.out.println("MARK 0");
+				while(!roman.substring(x, x+block.length()).equals(block))
+				{
+					index++;
+					block=LETTERS[index];
+					//System.out.println(roman.substring(x, x+block.length()));
+					//System.out.println(block);
+					//System.out.println("MARK 1");
+					if(condition)
+						blockLength=block.length();
+					else
+						blockLength=1;
+				}
+				if(block.length()==2){
+						x++;
+						//System.out.println("MARK 2");
+					}
+				number+=NUMBERS[index];
+				System.out.println(number);
+				System.out.println(x);
+				
+				if(x==roman.length()-2){
+					condition=false;
+				}
+				
+				
+
+ 			}
+		
 		return number;
 	}
 
