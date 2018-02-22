@@ -48,12 +48,14 @@ public class Triples
 						if(c%2==1){
 							if(a%2==1){
 								if(b%2==0){
-									output=output+a+" "+b+" "+c+"\n";
+									if (greatestCommonFactor(a,b,c)<=1)
+										output=output+a+" "+b+" "+c+"\n";
 								}
 							}
 							else if(a%2==0){
 								if(a%2==1){
-									output=output+a+" "+b+" "+c+"\n";								}
+									if (greatestCommonFactor(a,b,c)<=1)
+										output=output+a+" "+b+" "+c+"\n";								}
 							}
 						}
 						
