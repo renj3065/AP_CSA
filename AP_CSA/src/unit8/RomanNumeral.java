@@ -40,7 +40,7 @@ public class RomanNumeral
 	public Integer getNumber()
 	{
 			number=0;
-			
+			/*
 			for(int x=0;x<roman.length();x++){
 				int index=0;
 				int blockLength=0;
@@ -79,7 +79,22 @@ public class RomanNumeral
 				
 
  			}
-		
+		*/
+		roman=roman.replaceAll("IV", "IIII");
+		roman=roman.replaceAll("IX", "VIIII");
+		roman=roman.replaceAll("XL", "XXXX");
+		roman=roman.replaceAll("XC", "LXXXX");
+		roman=roman.replaceAll("CD", "CCCC");
+		roman=roman.replaceAll("CM", "DCCCC");
+
+		for(int x=0;x<roman.length();x++){
+			int index=0;
+			String block=roman.substring(x, x+1);
+			while(!block.equals(LETTERS[index])){
+				index++;
+			}
+			number+=NUMBERS[index];
+		}		
 		return number;
 	}
 
