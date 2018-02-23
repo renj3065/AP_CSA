@@ -7,16 +7,18 @@ import java.util.Scanner;
 public class Grades
 {
 	//instance variables
-	int numEntries=5;
+	int numEntries;
 	int[] gradebook;
 	//constructor
 	public Grades(){
-		setNumEntries(0);
-		
-		//gradebook=int[numEntries];
+		setNumEntries(1);
+		int[] temp=new int[numEntries];
+		gradebook=temp;
 	}
 	public Grades(int num){
 		setNumEntries(num);
+		int[] temp=new int[numEntries];
+		gradebook=temp;
 	}
 	
 	//set method
@@ -57,7 +59,14 @@ public class Grades
 
 
 	//toString method
-
+	public String toString(){
+		String temp="";
+		for(int x=0;x<gradebook.length;x++){
+			temp+=gradebook[x]+" ";
+		}
+		return "Gradebook:"+temp+"\nSum:"+getSum()+"\nAverage:"+String.format("%.2f", getAverage());
+		
+	}
 
 
 }

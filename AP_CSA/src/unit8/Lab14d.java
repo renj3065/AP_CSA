@@ -11,6 +11,7 @@ public class Lab14d
 		int num=keyboard.nextInt();
 		Grades test=new Grades(num);
 		test.setGrades();
+		System.out.println(test);
 		keyboard.close();
 		
 	}
