@@ -46,6 +46,7 @@ public class Deck {
 		}
 		cards=temp;
 		size=ranks.length*suits.length;
+		shuffle();
 	}
 
 
@@ -81,7 +82,10 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(isEmpty())
+			return null;
+		size--;
+		return cards[size];
 	}
 
 	/**

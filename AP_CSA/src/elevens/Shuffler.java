@@ -1,12 +1,14 @@
 package elevens;
 
+import java.util.Random;
+
 public class Shuffler {
 
 	/**
 	 * The number of consecutive shuffle steps to be performed in each call
 	 * to each sorting procedure.
 	 */
-	private static final int SHUFFLE_COUNT = 1;
+	private static final int SHUFFLE_COUNT = 4;
 
 
 	/**
@@ -49,7 +51,22 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void perfectShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled=new int[values.length];
+		int k=0;
+		int j=(values.length + 1)/2;
+		System.out.println(j);
+		for(int x=0;x<j;x++){
+			shuffled[k]=values[x];
+			k+=2;
+		}
+		k=1;
+		for(int y=j;y<values.length;y++){
+			shuffled[k]=values[y];
+			k+=2;
+		}
+		for(int z=0;z<values.length;z++){
+			values[z]=shuffled[z];
+		}
 	}
 
 	/**
@@ -63,7 +80,16 @@ public class Shuffler {
 	 * searching for an as-yet-unselected card.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
+
 	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		Random r=new Random();
+		int rng;
+		int temp;
+		for(int x=values.length-1;x>0;x--){
+			rng=r.nextInt(x+1);
+			temp=values[x];
+			values[x]=values[rng];
+			values[rng]=temp;
+		}
 	}
 }

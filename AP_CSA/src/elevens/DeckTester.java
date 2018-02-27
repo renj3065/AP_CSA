@@ -10,6 +10,20 @@ public class DeckTester {
 	 *	@param args is not used.
 	 */
 	public static void main(String[] args) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-	}
+		String[] r={"1","2","3"};
+		String[] s={"Clubs","Hearts","Spades","Diamonds"};
+		int[] v={1,2,3};
+		Deck test1=new Deck(r,s,v);
+		System.out.println(test1.deal());
+		System.out.println(test1.deal());
+
+		System.out.println(test1.deal());
+
+		System.out.println(test1.deal());
+
+		System.out.println(test1.deal());
+
+		
+		}
+	
 }

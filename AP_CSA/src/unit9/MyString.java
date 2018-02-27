@@ -43,7 +43,7 @@ public class MyString {
 		return low;
 	}
 	public boolean equals(MyString s){
-		
+		for
 	}
 	public static MyString valueOf(int i);
 				
