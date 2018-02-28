@@ -24,6 +24,7 @@ public class Deck {
 	 * The next card to be dealt is at size - 1.
 	 */
 	private int size;
+	private int fullSize;
 
 
 	/**
@@ -34,6 +35,7 @@ public class Deck {
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
 	 */
+
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		Card[] temp=new Card[ranks.length*suits.length];
 		int index=0;
@@ -46,7 +48,15 @@ public class Deck {
 		}
 		cards=temp;
 		size=ranks.length*suits.length;
+		fullSize=ranks.length*suits.length;
+		System.out.println("Unshuffled Deck");
+		System.out.println(this);
+		
 		shuffle();
+		System.out.println("Shuffled Deck");
+
+		System.out.println(this);
+
 	}
 
 
@@ -73,7 +83,17 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		int[] indicesForCards=new int[cards.length];
+		for(int y=0;y<cards.length;y++){
+			indicesForCards[y]=y;
+		}
+		Card[] ryanHoward=cards;
+		Shuffler.selectionShuffle(indicesForCards);
+		for(int x=0;x<indicesForCards.length;x++){
+			cards[x]=ryanHoward[indicesForCards[x]];
+		}
+		size=fullSize;
+		
 	}
 
 	/**
@@ -98,9 +118,9 @@ public class Deck {
 
 
 		//Unit 9 - modify to work with Arrays
-		/*
+		
 		for (int k = size - 1; k >= 0; k--) {
-			rtn = rtn + cards.get(k);
+			rtn = rtn + cards[k];
 			if (k != 0) {
 				rtn = rtn + ", ";
 			}
@@ -111,17 +131,17 @@ public class Deck {
 		}
 
 		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
+		for (int k = cards.length - 1; k >= size; k--) {
+			rtn = rtn + cards[k];
 			if (k != size) {
 				rtn = rtn + ", ";
 			}
-			if ((k - cards.size()) % 2 == 0) {
+			if ((k - cards.length) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
 				rtn = rtn + "\n";
 			}
 		}
-		*/
+		
 
 		rtn = rtn + "\n";
 		return rtn;
