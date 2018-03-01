@@ -17,8 +17,14 @@ public class IntroClass {
 		System.out.println(test.length());
 		
 		String name="hello";
-		System.out.println(name.substring(5,7));	
+		System.out.println(name.substring(5,5));	
 		System.out.println("L"=="L");
+		
+		int p=1, r=2;
+		if(p>0 || r++>5 && p>10){
+			System.out.println("dude");
+		}
+		System.out.println(r);
 		}
 
 }
