@@ -87,7 +87,11 @@ public class Deck {
 		for(int y=0;y<cards.length;y++){
 			indicesForCards[y]=y;
 		}
-		Card[] ryanHoward=cards;
+		
+		Card[] ryanHoward=new Card[cards.length];
+		for(int z=0;z<cards.length;z++){
+			ryanHoward[z]=cards[z];
+		}
 		Shuffler.selectionShuffle(indicesForCards);
 		for(int x=0;x<indicesForCards.length;x++){
 			cards[x]=ryanHoward[indicesForCards[x]];

@@ -9,5 +9,6 @@ public class Lab16d
 		//make a new MadLib
 		
 		out.println("\n");
+		MadLib test=new MadLib("story.dat");
 	}
 }

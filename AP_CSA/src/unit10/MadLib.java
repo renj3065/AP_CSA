@@ -28,7 +28,7 @@ public class MadLib
 		
 		try{
 			Scanner file = new Scanner(new File(fileName));
-		
+			
 		
 		
 		
@@ -48,14 +48,17 @@ public class MadLib
 	public void loadNouns()
 	{
 		try{
-		
-		
+			Scanner file = new Scanner(new File("nouns.dat"));
+			while(file.hasNext()){
+				nouns.add(file.next());
+			}
 		
 		
 		
 		}
 		catch(Exception e)
 		{
+			out.println("Noun issue");
 		}	
 		
 	}
@@ -63,20 +66,30 @@ public class MadLib
 	public void loadVerbs()
 	{
 		try{
+			Scanner file = new Scanner(new File("verbs.dat"));
 	
-	
-	
+			while(file.hasNext()){
+				verbs.add(file.next());
+			}
 	
 	
 		}
 		catch(Exception e)
 		{
+			out.println("Verb issue");
+
 		}
 	}
 
 	public void loadAdjectives()
 	{
 		try{
+			Scanner file = new Scanner(new File("adjectives.dat"));
+			
+			while(file.hasNext()){
+				adjectives.add(file.next());
+			}
+	
 	
 	
 	
@@ -85,6 +98,7 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
+			out.println("Verb issue");
 		}
 	}
 

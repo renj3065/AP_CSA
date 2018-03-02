@@ -20,6 +20,10 @@ public class DeckTester {
 		System.out.println(test1.deal());
 		System.out.println(test1.deal());
 
+		String[] r1={"1","2","3"};
+		String[] s1={"Clubs","Hearts","Spades","Diamonds"};
+		int[] v1={1,2,3};
+		Deck test2=new Deck(r1,s1,v1);
 		
 		}
 	
