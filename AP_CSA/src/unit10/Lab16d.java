@@ -2,6 +2,8 @@ package unit10;
 
 import static java.lang.System.*;
 
+import java.io.File;
+
 public class Lab16d
 {
 	public static void main( String args[] )
@@ -9,6 +11,8 @@ public class Lab16d
 		//make a new MadLib
 		
 		out.println("\n");
-		MadLib test=new MadLib("story.dat");
+		String madLibFile=System.getProperty("user.dir")+"\\src\\unit10\\story.dat";
+
+		MadLib test=new MadLib(madLibFile);
 	}
 }

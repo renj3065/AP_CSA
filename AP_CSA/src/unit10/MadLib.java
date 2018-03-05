@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
+
 import static java.lang.System.*;
 
 public class MadLib
@@ -22,21 +24,33 @@ public class MadLib
 
 	public MadLib(String fileName)
 	{
-		//load stuff
-		
+		//gettype
+		verbs=new ArrayList<String>();
+		nouns=new ArrayList<String>();
+		adjectives=new ArrayList<String>();
+
 		
 		
 		try{
 			Scanner file = new Scanner(new File(fileName));
-			
-		
-		
-		
-		
-		
-		
-	
-		
+			loadVerbs();
+			loadNouns();
+			loadAdjectives();
+			while(file.hasNext()){
+				if(file.next()=="#"){
+					System.out.println(getRandomNoun());
+					
+				}
+				else if(file.next()=="@"){
+					System.out.println(getRandomVerb());
+				}
+				else if(file.next()=="&"){
+					System.out.println(getRandomAdjective());
+				}
+				else{
+					System.out.println(file.next());
+				}
+			}
 		}
 		catch(Exception e)
 		{
@@ -48,7 +62,8 @@ public class MadLib
 	public void loadNouns()
 	{
 		try{
-			Scanner file = new Scanner(new File("nouns.dat"));
+			Scanner file = new Scanner(new File(System.getProperty("user.dir")+"\\src\\unit10\\nouns.dat"));
+			
 			while(file.hasNext()){
 				nouns.add(file.next());
 			}
@@ -66,12 +81,14 @@ public class MadLib
 	public void loadVerbs()
 	{
 		try{
-			Scanner file = new Scanner(new File("verbs.dat"));
-	
+			
+			Scanner file = new Scanner(new File(System.getProperty("user.dir")+"\\src\\unit10\\verbs.dat"));
+			//System.out.println(file.hasNext());
+			//System.out.println(file.next());
+			
 			while(file.hasNext()){
-				verbs.add(file.next());
+				verbs.add(file.nextLine());
 			}
-	
 	
 		}
 		catch(Exception e)
@@ -84,7 +101,7 @@ public class MadLib
 	public void loadAdjectives()
 	{
 		try{
-			Scanner file = new Scanner(new File("adjectives.dat"));
+			Scanner file = new Scanner(new File(System.getProperty("user.dir")+"\\src\\unit10\\adjectives.dat"));
 			
 			while(file.hasNext()){
 				adjectives.add(file.next());
@@ -98,26 +115,29 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
-			out.println("Verb issue");
+			out.println("Adjective issue");
 		}
 	}
 
 	public String getRandomVerb()
 	{
-	
-		return "";
+		Random r=new Random();
+		int ryan=r.nextInt(verbs.size()-1);
+		return verbs.get(ryan);
 	}
 	
 	public String getRandomNoun()
 	{
-		
-		return "";
+		Random r=new Random();
+		int ryan=r.nextInt(nouns.size()-1);
+		return nouns.get(ryan);
 	}
 	
 	public String getRandomAdjective()
 	{
-		
-		return "";
+		Random r=new Random();
+		int ryan=r.nextInt(adjectives.size()-1);
+		return adjectives.get(ryan);
 	}		
 
 	public String toString()
