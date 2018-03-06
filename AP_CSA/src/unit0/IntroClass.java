@@ -1,5 +1,7 @@
 package unit0;
 
+import java.util.Scanner;
+
 public class IntroClass {
 
 	public static void main(String[] args) {
@@ -17,8 +19,12 @@ public class IntroClass {
 		System.out.println(test.length());
 		
 		String name="hello";
-		System.out.println(name.substring(5,7));	
 		System.out.println("L"=="L");
+		
+		Scanner keyboard=new Scanner(" 100 90 85 72.5 95.6");
+		System.out.println(keyboard.nextDouble());
+		System.out.println(keyboard.nextInt());
+
 		}
 
 }
