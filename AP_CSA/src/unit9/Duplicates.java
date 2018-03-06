@@ -7,14 +7,14 @@ public Duplicates(int[] list){
 	eliminateDuplicates(myArray);
 }
 public static int[] eliminateDuplicates(int[] list){
-	for(int x=0;x<list.length;x++){
-		for(int y=0;y<list.length;y++){
-			if(x!=y){
-				if (list[x]==list[y]){
-					list[y]=null;
-				}
-			}
+	String empty=list[0]+" ";
+	for(int x=1;x<list.length;x++){
+		if(empty.indexOf(list[x]+" ")<0){
+			empty+=list[x]+" ";
 		}
 	}
+	String[] nums=empty.split(" ");
+	int[] dupped=new int[nums.length];
+	return dupped;
 }
 }

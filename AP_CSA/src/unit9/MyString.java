@@ -42,10 +42,10 @@ public class MyString {
 		MyString low=new MyString(temp);
 		return low;
 	}
-	public boolean equals(MyString s){
-		for
-	}
-	public static MyString valueOf(int i);
+	//public boolean equals(MyString s){
+		//for
+	//}
+	//public static MyString valueOf(int i);
 				
 				
 
