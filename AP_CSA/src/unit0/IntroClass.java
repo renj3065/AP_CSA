@@ -19,12 +19,24 @@ public class IntroClass {
 		System.out.println(test.length());
 		
 		String name="hello";
+<<<<<<< HEAD
+=======
+		System.out.println(name.substring(5,5));	
+>>>>>>> branch 'master' of https://github.com/renj3065/AP_CSA.git
 		System.out.println("L"=="L");
 		
+<<<<<<< HEAD
 		Scanner keyboard=new Scanner(" 100 90 85 72.5 95.6");
 		System.out.println(keyboard.nextDouble());
 		System.out.println(keyboard.nextInt());
 
+=======
+		int p=1, r=2;
+		if(p>0 || r++>5 && p>10){
+			System.out.println("dude");
+		}
+		System.out.println(r);
+>>>>>>> branch 'master' of https://github.com/renj3065/AP_CSA.git
 		}
 
 }
