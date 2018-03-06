@@ -15,6 +15,8 @@ public class MadLib
 	private ArrayList<String> nouns;
 	private ArrayList<String> adjectives;
 	
+	private String response;
+	
 	public MadLib()
 	{
 
@@ -36,21 +38,27 @@ public class MadLib
 			loadVerbs();
 			loadNouns();
 			loadAdjectives();
+			response="";
 			while(file.hasNext()){
-				if(file.next()=="#"){
-					System.out.println(getRandomNoun());
+				String ryan=file.next();
+				if(ryan.equals("#")){
+					response+=getRandomNoun();
 					
 				}
-				else if(file.next()=="@"){
-					System.out.println(getRandomVerb());
+				else if(ryan.equals("@")){
+
+					response+=getRandomVerb();
 				}
-				else if(file.next()=="&"){
-					System.out.println(getRandomAdjective());
+				else if(ryan.equals("&")){
+
+					response+=getRandomAdjective();
 				}
 				else{
-					System.out.println(file.next());
+					response+=ryan;
 				}
+				response+=" ";
 			}
+			System.out.println(response);
 		}
 		catch(Exception e)
 		{
@@ -142,6 +150,6 @@ public class MadLib
 
 	public String toString()
 	{
-	   return "\n\n\n";
+	   return response;
 	}
 }
