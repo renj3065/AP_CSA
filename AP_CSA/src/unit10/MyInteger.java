@@ -84,14 +84,14 @@ public boolean equals(MyInteger x){
 	return false;
 }
 
-public static void parseInt(char[] x){
-	//int[]
+public static int[] parseInt(char[] x){
+	for()
 	
 }
 
 public static void main(String[] args){
-	char[] ryan={'a','b','c'};
-	MyInteger.parseInt(ryan);
+	char[] ryan={'1','2','3'};
+	int[] temp=MyInteger.parseInt(ryan);
 }
 
 }
