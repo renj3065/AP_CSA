@@ -84,14 +84,34 @@ public boolean equals(MyInteger x){
 	return false;
 }
 
-public static int[] parseInt(char[] x){
-	for()
+public static int parseInt(char[] x){
+	int ryan=0;
+	int num=0;
+	for(int y=x.length-1;y>=0;y--){
+		ryan+=((int)x[y]-48)*Math.pow(10, num);
+		num++;
+	}
+	return ryan;
 	
+}
+
+public static int parseInt(String x){
+	int ryan=0;
+	int num=0;
+	for(int y=x.length()-1;y>=0;y--){
+		ryan+=((int)x.charAt(y)-48)*Math.pow(10, num);
+		num++;
+	}
+	return ryan;
 }
 
 public static void main(String[] args){
 	char[] ryan={'1','2','3'};
-	int[] temp=MyInteger.parseInt(ryan);
+	int temp=MyInteger.parseInt(ryan);
+	String howard="123";
+	int temp1=MyInteger.parseInt(howard);
+	System.out.println(temp);
+	System.out.println(temp1);
 }
 
 }
