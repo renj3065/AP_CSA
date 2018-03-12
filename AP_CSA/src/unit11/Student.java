@@ -10,10 +10,11 @@ import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
 
-public class Student
+public class Student implements Comparable
 {
 	private String myName;
 	private Grades myGrades;
+	
 	
 	public Student()
 	{
@@ -54,36 +55,41 @@ public class Student
 	
 	public int getNumGrades()
 	{
-		return dadfasdfsaf;
+		return myGrades.getNumGrades();
 	}
 
 	public double getSum()
 	{
-		return 0.0;
+		return myGrades.getSum();
 	}
 	
 	public double getAverage()
 	{
-		return 0.0;
+		return myGrades.getSum()/myGrades.getNumGrades();
 	}
 
 	public double getAverageMinusLow()
 	{
-		return 0.0;
+		return (myGrades.getSum()-myGrades.getLowGrade())/(myGrades.getNumGrades()-1);
 	}
 	
 	public double getHighGrade()
 	{
-		return 0.0;		
+		return myGrades.getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return 0.0;	
+		return myGrades.getLowGrade();	
 	}
 	
+	public int compareTo(Object s){
+		Student temp=(Student)s;
+		return (int)Math.ceil(this.getAverage()-temp.getAverage());
+		
+	}
 	public String toString()
-	{
-		return "";
+	{	
+		return myName+" - "+myGrades.toString();
 	}	
 }
