@@ -6,31 +6,35 @@ package unit11;
 //Lab  -
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.util.ArrayList;
 
 public class Class
 {
 	private String name;
-	private Student[] studentList;
-	
+	//private Student[] studentList;
+	private ArrayList<Student> studentList;
 	public Class()
 	{
 		name="";
-		studentList=new Student[0];
+		//studentList=new Student[0];
+		studentList=new ArrayList<Student>(0);
 	}
 	
 	public Class(String names, int stuCount)
 	{
 		name=names;
-		studentList=new Student[stuCount];
+		//studentList=new Student[stuCount];
+		studentList=new ArrayList<Student>(stuCount);
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
-		studentList[stuNum]=s;
-
+		//studentList[stuNum]=s;
+		studentList.set(stuNum, s);
 	}
 	
 	public String getClassName()
@@ -45,32 +49,37 @@ public class Class
 		for(Student x:studentList){
 			classAverage+=x.getAverage();
 		}
-		classAverage=classAverage/studentList.length;
+		classAverage=classAverage/studentList.size();
 		return classAverage;
 	}
 	
 	public double getStudentAverage(int stuNum)
 	{
-		return studentList[stuNum].getAverage();
+		//return studentList[stuNum].getAverage();
+		return studentList.get(stuNum).getAverage();
+
 	}
 
 	public double getStudentAverage(String stuName)
 	{
 		int ryanHoward=-1;
-		for(int x=0;x<studentList.length;x++){
-			if(studentList[x].getName().equals(stuName)){
+		for(int x=0;x<studentList.size();x++){
+			if(studentList.get(x).getName().equals(stuName)){
 				ryanHoward=x;
 			}
 		}
 
 		if (ryanHoward==-1)
 			return 0.0;
-		return studentList[ryanHoward].getAverage();
+		//return studentList[ryanHoward].getAverage();
+		return studentList.get(ryanHoward).getAverage();
 	}
 	
 	public String getStudentName(int stuNum)
 	{
-		return studentList[stuNum].getName();
+		//return studentList[stuNum].getName();
+		return studentList.get(stuNum).getName();
+
 	}
 
 	public String getStudentWithHighestAverage()
@@ -88,7 +97,7 @@ public class Class
 		}
 		*/
 		sort(studentList);
-		hName=studentList[studentList.length-1].getName();
+		hName=studentList.get(studentList.size()-1).getName();
 
 
 
@@ -112,7 +121,7 @@ public class Class
 		}
 		*/
 		sort(studentList);
-		hName=studentList[0].getName();
+		hName=studentList.get(0).getName();
 
 
 
@@ -134,22 +143,24 @@ public class Class
 
 		return output;
 	}
-	public void sort(Student[] s){
+	
+	public void sort(ArrayList<Student> s){
 		
-		Student ryan=s[0];
+		Student ryan=s.get(0);
 		Student tempSwitch;
-		for(int x=s.length-1;x>0;x--){
+		for(int x=s.size()-1;x>0;x--){
 			for(int y=0;y<x;y++){
-				if(studentList[y+1].compareTo(studentList[y])<0){
-					tempSwitch=studentList[y+1];
-					studentList[y+1]=studentList[y];
-					studentList[y]=tempSwitch;
+				if(studentList.get(y+1).compareTo(studentList.get(y))<0){
+					tempSwitch=studentList.get(y+1);
+					studentList.set(y+1, studentList.get(y));
+					studentList.set(y, tempSwitch);
 					//System.out.println(ryan.getNumericGrade());
 					
 				}
 			}
 		}
 	}
+	
 	public String toString()
 	{
 		sort(studentList);

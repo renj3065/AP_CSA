@@ -9,11 +9,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.util.ArrayList;
 
 public class Grades
 {
-	private Grade[] grades;
-	
+	//private Grade[] grades;
+	private ArrayList<Grade> grades;
 	public Grades()
 	{
 		setGrades("");
@@ -30,8 +31,9 @@ public class Grades
 		int index=0;
 		Scanner keyboard=new Scanner(gradeList);
 		//System.out.println("Mark 0");
-
-		grades=new Grade[keyboard.nextInt()];
+		int x=keyboard.nextInt();
+		grades=new ArrayList<Grade>(x);
+		//grades=new Grade[keyboard.nextInt()];
 		//System.out.println("Mark 0");
 		String howard=keyboard.next();
 		while(keyboard.hasNextDouble()){
@@ -47,7 +49,7 @@ public class Grades
 	public void setGrade(int spot, double grade)
 	{
 		// System.out.println("Mark 1");
-		grades[spot]=new Grade(grade);
+		grades.set(spot, new Grade(grade));//[spot]=new Grade(grade);
 	}
 	
 	public double getSum()
@@ -65,10 +67,10 @@ public class Grades
 	public double getLowGrade()
 	{
 		double low = Double.MAX_VALUE;
-		Grade ryan=grades[0];
+		Grade ryan=grades.get(0);
 		for(int x=0;x<getNumGrades()-1;x++){
-			if(grades[x+1].getNumericGrade()<ryan.getNumericGrade()){
-				ryan=grades[x+1];
+			if(grades.get(x+1).getNumericGrade()<ryan.getNumericGrade()){
+				ryan=grades.get(x+1);
 				//System.out.println(ryan.getNumericGrade());
 			}
 		}
@@ -81,10 +83,10 @@ public class Grades
 	public double getHighGrade()
 	{
 		double high = Double.MIN_VALUE;
-		Grade ryan=grades[0];
+		Grade ryan=grades.get(0);
 		for(int x=0;x<getNumGrades()-1;x++){
-			if(grades[x+1].getNumericGrade()>ryan.getNumericGrade()){
-				ryan=grades[x+1];
+			if(grades.get(x+1).getNumericGrade()>ryan.getNumericGrade()){
+				ryan=grades.get(x+1);
 				//System.out.println(ryan.getNumericGrade());
 
 			}
@@ -101,7 +103,7 @@ public class Grades
 	
 	public int getNumGrades()
 	{
-		return grades.length;
+		return grades.size();
 	}
 	
 	public String toString()
