@@ -32,13 +32,17 @@ public class Grades
 		Scanner keyboard=new Scanner(gradeList);
 		//System.out.println("Mark 0");
 		int x=keyboard.nextInt();
-		grades=new ArrayList<Grade>(x);
+		grades=new ArrayList<Grade>();
+		
+		for(Grade y:grades){
+			System.out.println(y);
+		}
 		//grades=new Grade[keyboard.nextInt()];
 		//System.out.println("Mark 0");
 		String howard=keyboard.next();
 		while(keyboard.hasNextDouble()){
 
-			setGrade(index,keyboard.nextDouble());
+			grades.add(new Grade(keyboard.nextDouble()));
 			index++;
 		}
 

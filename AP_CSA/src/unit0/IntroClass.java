@@ -1,10 +1,20 @@
 package unit0;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class IntroClass {
 
 	public static void main(String[] args) {
+		System.out.println((int)Math.ceil(-0.2));
+		ArrayList<String> billy=new ArrayList<String>(3);
+		billy.add(0,"Wa");
+		System.out.println(billy.size());
+		int[] blep=new int[3];
+		System.out.println(blep.length);
+		for(String x: billy){
+			System.out.println(x);
+		}
 		// TODO Auto-generated method stub
 		System.out.println("Hello World!");
 		String str="Hello";
@@ -34,5 +44,7 @@ public class IntroClass {
 		}
 		System.out.println(r);
 		}
-
+	
+		
 }
+

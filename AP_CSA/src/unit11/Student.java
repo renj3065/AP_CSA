@@ -85,8 +85,19 @@ public class Student implements Comparable
 	
 	public int compareTo(Object s){
 		Student temp=(Student)s;
-		return (int)Math.ceil(this.getAverage()-temp.getAverage());
-		
+		if(this.getAverage()-temp.getAverage()>0)
+			return (int)Math.ceil(this.getAverage()-temp.getAverage());
+		if(this.getAverage()-temp.getAverage()<0)
+			return (int)Math.floor(this.getAverage()-temp.getAverage());
+		return 0;
+
+	}
+	public boolean equals(Object s){
+		Student temp=(Student) s;
+		if(this.getAverage()==temp.getAverage()){
+			return true;
+		}
+		return false;
 	}
 	public String toString()
 	{	

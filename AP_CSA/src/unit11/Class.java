@@ -28,13 +28,14 @@ public class Class
 	{
 		name=names;
 		//studentList=new Student[stuCount];
-		studentList=new ArrayList<Student>(stuCount);
+		studentList=new ArrayList<Student>();
+		
 	}
 	
 	public void addStudent(int stuNum, Student s)
 	{
 		//studentList[stuNum]=s;
-		studentList.set(stuNum, s);
+		studentList.add(s);
 	}
 	
 	public String getClassName()
@@ -96,7 +97,7 @@ public class Class
 			}
 		}
 		*/
-		sort(studentList);
+		Collections.sort(studentList);
 		hName=studentList.get(studentList.size()-1).getName();
 
 
@@ -120,7 +121,7 @@ public class Class
 			}
 		}
 		*/
-		sort(studentList);
+		Collections.sort(studentList);
 		hName=studentList.get(0).getName();
 
 
@@ -143,7 +144,7 @@ public class Class
 
 		return output;
 	}
-	
+	/*
 	public void sort(ArrayList<Student> s){
 		
 		Student ryan=s.get(0);
@@ -160,10 +161,10 @@ public class Class
 			}
 		}
 	}
-	
+	*/
 	public String toString()
 	{
-		sort(studentList);
+		Collections.sort(studentList);
 		String output=""+getClassName()+"\n";
 		for(Student stu:studentList){
 			output+=stu.toString()+"\t"+String.format("%.2f", stu.getAverage())+"\n";
