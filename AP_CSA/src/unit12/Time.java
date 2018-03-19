@@ -34,4 +34,18 @@ public long getSeconds() {
 public void setSeconds(long seconds) {
 	this.seconds = seconds;
 }
+public void setTime(long s) {
+    long x = s / 1000;
+
+    seconds = (int)(x % 60);
+
+    long y = x / 60;
+
+    minutes = (int)(y % 60);
+
+    int z = (int)(y / 60);
+
+    hours = (int)(z % 24);
+  }
+
 }
