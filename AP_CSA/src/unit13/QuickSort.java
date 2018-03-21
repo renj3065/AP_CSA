@@ -23,6 +23,10 @@ public class QuickSort
 			int split = partition(list, low, high);
 			quickSort(list, low, split);
 			quickSort(list, split+1, high);
+			for(Comparable x:list){
+				System.out.print(x);
+			}
+			System.out.println("\n");
 		}
 
 
@@ -34,19 +38,33 @@ public class QuickSort
 
 	private static int partition(Comparable[] list, int low, int high)
 	{
-	
-		System.out.println("Mark 1");
+		Comparable temp;
 		Comparable pivot=list[low];
 		int bot=low-1;
-		int top=high+1;
-		
-		while(bot<top){
+		   for(int top=low; top<high-1; top++)
+	         {
+	             if(list[top].compareTo(pivot)<=0)
+	             {
+	                 bot++;
+	                 temp = list[bot];
+	                 list[bot] = list[top];
+	                 list[top] = temp;
+	             }
+	         }
+
+	         temp = list[bot+1];
+	         list[bot+1] = list[high];
+	         list[high] = temp;
+	         return (bot+1);
+	     
+
+/*		while(bot<=top){
 			System.out.println("Mark 2");
 
-			while(list[--top].compareTo(pivot)>0){
-				System.out.println("Mark 3");
-
-				while(list[++bot].compareTo(pivot)<0){
+			while(list[bot].compareTo(pivot)<0){
+				bot++;
+			}
+			while(list[top].compareTo(pivot)>0){
 					if(top<=bot){
 						return top;
 					}
@@ -54,9 +72,10 @@ public class QuickSort
 					 list[top]=list[bot];
 						list[bot]=temp;
 				}
-			}
+			
 			
 		}
+*/
 
 
 
@@ -67,7 +86,5 @@ public class QuickSort
 
 
 
-
-		return 0;
 	}
 }
