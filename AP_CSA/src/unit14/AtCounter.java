@@ -30,22 +30,28 @@ public class AtCounter
 		}
 	}
 
-	public int countAts(int r, int c)
+	public int countAts(int r, int c, int original)
 	{
+		if(original==0){
+			trackX=r;
+			trackY=c;
+			atCount=0;
+			original++;
+		}
 		  int row = atMat.length;
 		  int col = atMat[0].length;
 		if(atMat[r][c]=='@' && track[r][c]==0){
 			track[r][c]=1;
 			atCount++;
 			if(r+1>-1 && r+1<row)
-				 countAts(r+1,c);
+				 countAts(r+1,c,original);
 				
 			if(r-1>-1 && r-1<row)
-				 countAts(r-1,c);
+				 countAts(r-1,c,original);
 			if(c+1>-1 && c+1<col)
-				 countAts(r,c+1);
+				 countAts(r,c+1,original);
 			if(c-1>-1 && c-1<col)
-				 countAts(r,c-1);
+				 countAts(r,c-1,original);
 		}
 		//add in recursive code to count up the # of @s connected
 		
@@ -63,7 +69,7 @@ public class AtCounter
 	public String toString()
 	{
 		String output="";
-		output+=getAtCount()+" @s connected.";
+		output+=trackX+" "+trackY+" has "+getAtCount()+" @s connected.";
 		return output;
 	}
 }

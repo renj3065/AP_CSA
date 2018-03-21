@@ -9,7 +9,21 @@ public class Lab21g
 		//instantiate an AtCounter
 		AtCounter bob=new AtCounter();
 		//test the code
-		bob.countAts(3, 9);
+		bob.countAts(3, 9,0);
 		System.out.println(bob);
+		
+		bob.countAts(0, 0,0);
+		System.out.println(bob);
+		
+		bob.countAts(2, 5,0);
+		System.out.println(bob);
+		
+		bob.countAts(5, 0,0);
+		System.out.println(bob);
+		
+		bob.countAts(9, 9,0);
+		System.out.println(bob);
+
+
 	}
 }
