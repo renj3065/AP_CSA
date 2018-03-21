@@ -38,5 +38,7 @@ public class JournalCount {
 	System.out.println(stop-start);
 	
 	
+	
+	
 }
 }
