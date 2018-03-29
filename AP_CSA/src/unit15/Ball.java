@@ -9,7 +9,7 @@ package unit15;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -109,5 +109,52 @@ public class Ball extends Block
 		String output="";
 		output+=super.toString()+", "+xSpeed+", "+ySpeed;
 		return output;
+	}
+	
+	public boolean didCollideLeft(Object obj){
+		Paddle temp=(Paddle) obj;
+		if( getX() <= temp.getX() +temp.getWidth()+Math.abs(getXSpeed())){
+			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
+				return true;
+			}
+			if(getY() +getHeight() >= temp.getY() && getY()+getHeight()<=temp.getY()+temp.getHeight()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
+		return false;
+	}
+	public boolean didCollideRight(Object obj){
+
+		Paddle temp=(Paddle) obj;
+		if( getX() >= temp.getX()+Math.abs(getXSpeed())){
+			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
+				return true;
+			}
+			if(getY() +getHeight() >= temp.getY() && getY()+getHeight()<=temp.getY()+temp.getHeight()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
+		return false;
+	
+	}
+	public boolean didCollideTop(){
+		if(getY()<=0){
+			return true;
+		}
+		return false;
+	}
+	public boolean didCollideBottom(){
+		if(getY()>=550){
+			return true;
+		}
+		return false;
 	}
 }
