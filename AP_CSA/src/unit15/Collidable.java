@@ -4,6 +4,6 @@ public interface Collidable
 {
 boolean didCollideLeft(Object obj);
 boolean didCollideRight(Object obj);
-boolean didCollideTop();
-boolean didCollideBottom();
+boolean didCollideTop(Object x);
+boolean didCollideBottom(Object x);
 }

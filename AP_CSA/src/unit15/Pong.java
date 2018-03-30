@@ -14,6 +14,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 import java.awt.event.ActionListener;
 
 public class Pong extends Canvas implements KeyListener, Runnable
@@ -32,7 +33,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				setBackground(Color.WHITE);
 		setVisible(true);
 
-		ball=new SpeedUpBall(100,100,10,10, Color.GREEN, 3, 3);
+		ball=new Ball(100,100,10,10, Color.GREEN, 3, 3);
 		
 		//instantiate a left Paddle
 		
@@ -109,26 +110,39 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				graphToBack.drawString("Left score:"+pointsLeft, 600, 100); 
 
 				pointsLeft++;
-				System.out.println("DAB");
+				//System.out.println("DAB");
 				graphToBack.setColor(Color.black);
 
 				graphToBack.drawString("Left score:"+pointsLeft, 600, 100); 
 
 			}
-			ball.setPos(400, 150);
-			ball.setXSpeed(1);
-			ball.setYSpeed(1);
+			Random r=new Random();
+
+			ball.setPos(400, r.nextInt(100)+100);
+			if(r.nextInt(2)==0){
+				ball.setXSpeed(r.nextInt(2)+1);
+			}
+			else{
+				ball.setXSpeed((r.nextInt(2)+1)*-1);
+			}
+			if(r.nextInt(2)==0){
+				ball.setYSpeed(r.nextInt(2)+1);
+			}
+			else{
+				ball.setYSpeed((r.nextInt(2)+1)*-1);
+			}
 		}
 
 		
 		//see if the ball hits the top or bottom wall 
-		if(ball.didCollideTop()){
+		if(ball.didCollideTop(rightPaddle)){
 			ball.setYSpeed(-1*ball.getYSpeed());
 		}
 
-		if(ball.didCollideBottom()){
+		if(ball.didCollideBottom(rightPaddle)){
 			ball.setYSpeed(-1*ball.getYSpeed());
 		}
+		
 
 		//see if the ball hits the left paddle
 		if(ball.didCollideLeft(leftPaddle)){
@@ -141,7 +155,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			}
 		}
 		
-		
+	
 		//see if the ball hits the right paddle
 		if(ball.didCollideRight(rightPaddle)){
 			if( ball.getX() >= rightPaddle.getX()- Math.abs(ball.getXSpeed())){

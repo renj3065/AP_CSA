@@ -68,7 +68,7 @@ public class Paddle extends Block
    public void moveDownAndDraw(Graphics window)
    {
 	   if(getY()+getHeight()<540){
-	   System.out.println("Why D:");
+	   //System.out.println("Why D:");
 	   draw(window,Color.white);
 
 

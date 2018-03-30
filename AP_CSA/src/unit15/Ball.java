@@ -145,16 +145,29 @@ public class Ball extends Block implements Collidable
 		return false;
 	
 	}
-	public boolean didCollideTop(){
+	public boolean didCollideTop(Object x){
+		Paddle temp=(Paddle) x;
 		if(getY()<=0){
 			return true;
 		}
+		/*if(didCollideRight(temp)||didCollideLeft(temp)){
+			if(getY()<=temp.getY()+temp.getHeight()){
+				return true;
+			}
+		}*/
 		return false;
 	}
-	public boolean didCollideBottom(){
+	public boolean didCollideBottom(Object x){
+		Paddle temp=(Paddle) x;
+
 		if(getY()+getHeight()>=540){
 			return true;
 		}
+		/*if(didCollideRight(temp)||didCollideLeft(temp)){
+			if(getY()+getHeight()>=temp.getY()){
+				return true;
+			}
+		}*/
 		return false;
 	}
 }
