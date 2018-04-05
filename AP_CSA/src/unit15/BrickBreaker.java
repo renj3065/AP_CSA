@@ -1,6 +1,5 @@
 package unit15;
 
-package unit15;
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
@@ -84,10 +83,7 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
-		graphToBack.setColor(Color.black);
-		graphToBack.drawString("Right score:"+pointsRight, 100, 100); 
-		graphToBack.setColor(Color.black);
-		graphToBack.drawString("Left score:"+pointsLeft, 600, 100); 
+		
 
 		ball.moveAndDraw(graphToBack);
 		paddle.draw(graphToBack);
@@ -126,17 +122,17 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 
 		
 		//see if the ball hits the top or bottom wall 
-		if(ball.didCollideTop(rightPaddle)){
+		if(ball.didCollideTop(paddle)){
 			ball.setYSpeed(-1*ball.getYSpeed());
 		}
 
-		if(ball.didCollideBottom(rightPaddle)){
+		if(ball.didCollideBottom(paddle)){
 			ball.setYSpeed(-1*ball.getYSpeed());
 		}
 		
 
 		//see if the ball hits the left paddle
-		if(ball.didCollideLeft(leftPaddle)){
+		/*if(ball.didCollideLeft(leftPaddle)){
 			if( ball.getX() <= leftPaddle.getX() +leftPaddle.getWidth()- Math.abs(ball.getXSpeed())){
 				ball.setYSpeed(-1*ball.getYSpeed());
 
@@ -144,12 +140,12 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 			else{
 				ball.setXSpeed(-1*ball.getXSpeed());
 			}
-		}
+		}*/
 		
 	
 		//see if the ball hits the right paddle
-		if(ball.didCollideRight(rightPaddle)){
-			if( ball.getX() >= rightPaddle.getX()- Math.abs(ball.getXSpeed())){
+		if(ball.didCollideBottom(paddle)){
+			if( ball.getX() >= paddle.getX()- Math.abs(ball.getXSpeed())){
 				ball.setYSpeed(-1*ball.getYSpeed());
 
 			}
@@ -165,23 +161,13 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 		if(keys[0] == true)
 		{
 			//move left paddle up and draw it on the window
-			leftPaddle.moveUpAndDraw(graphToBack);
+			paddle.moveLeftAndDraw(graphToBack);
 		}
 		if(keys[1] == true)
 		{
 			//move left paddle down and draw it on the window
-			leftPaddle.moveDownAndDraw(graphToBack);
+			paddle.moveRightAndDraw(graphToBack);
 
-
-		}
-		if(keys[2] == true)
-		{
-			rightPaddle.moveUpAndDraw(graphToBack);
-
-		}
-		if(keys[3] == true)
-		{
-			rightPaddle.moveDownAndDraw(graphToBack);
 
 		}
 
@@ -207,10 +193,9 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=true; break;
-			case 'Z' : keys[1]=true; break;
-			case 'I' : keys[2]=true; break;
-			case 'M' : keys[3]=true; break;
+			case 'A' : keys[0]=true; break;
+			case 'S' : keys[1]=true; break;
+
 		}
 	}
 
@@ -218,10 +203,9 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
 	{
 		switch(toUpperCase(e.getKeyChar()))
 		{
-			case 'W' : keys[0]=false; break;
-			case 'Z' : keys[1]=false; break;
-			case 'I' : keys[2]=false; break;
-			case 'M' : keys[3]=false; break;
+			case 'A' : keys[0]=false; break;
+			case 'S' : keys[1]=false; break;
+
 		}
 	}
 

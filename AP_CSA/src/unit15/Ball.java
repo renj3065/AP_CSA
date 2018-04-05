@@ -112,7 +112,7 @@ public class Ball extends Block implements Collidable
 	}
 	
 	public boolean didCollideLeft(Object obj){
-		Paddle temp=(Paddle) obj;
+		Block temp=(Block) obj;
 		if( getX() <= temp.getX() +temp.getWidth()+Math.abs(getXSpeed())){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
 				return true;
@@ -129,7 +129,7 @@ public class Ball extends Block implements Collidable
 	}
 	public boolean didCollideRight(Object obj){
 
-		Paddle temp=(Paddle) obj;
+		Block temp=(Block) obj;
 		if( getX() + getWidth()>= temp.getX()-getXSpeed()){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
 				return true;
@@ -146,28 +146,36 @@ public class Ball extends Block implements Collidable
 	
 	}
 	public boolean didCollideTop(Object x){
-		Paddle temp=(Paddle) x;
-		if(getY()<=0){
-			return true;
-		}
-		/*if(didCollideRight(temp)||didCollideLeft(temp)){
-			if(getY()<=temp.getY()+temp.getHeight()){
+		Block temp=(Block) x;
+		if( getY() <= temp.getY() +temp.getHeight()+Math.abs(getYSpeed())){
+			if(getX()>=temp.getX() && getX()<=temp.getX()+temp.getWidth()){
+				
 				return true;
 			}
-		}*/
+			if(getX() +getWidth() >= temp.getX() && getX()+getWidth()<=temp.getX()+temp.getWidth()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
 		return false;
 	}
 	public boolean didCollideBottom(Object x){
-		Paddle temp=(Paddle) x;
-
-		if(getY()+getHeight()>=540){
-			return true;
-		}
-		/*if(didCollideRight(temp)||didCollideLeft(temp)){
-			if(getY()+getHeight()>=temp.getY()){
+		Block temp=(Block) x;
+		if( getY() + getHeight()>= temp.getY()-getYSpeed()){
+			if(getX()>=temp.getX() && getX()<=temp.getX()+temp.getWidth()){
 				return true;
 			}
-		}*/
+			if(getX() +getWidth() >= temp.getX() && getX()+getWidth()<=temp.getX()+temp.getWidth()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
 		return false;
 	}
 }
