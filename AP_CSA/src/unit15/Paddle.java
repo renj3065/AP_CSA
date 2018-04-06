@@ -82,11 +82,11 @@ public class Paddle extends Block
    {
 	   //if(getY()+getHeight()<540){
 	   //System.out.println("Why D:");
-	   //draw(window,Color.white);
+	   draw(window,Color.white);
 
 
 		//setY
-	   setY(getX()+speed);
+	   setX(getX()+speed);
 		//draw the ball at its new location
 	   draw(window);
 	   
@@ -94,11 +94,12 @@ public class Paddle extends Block
    public void moveLeftAndDraw(Graphics window)
    {
 	   //if(getY()+getHeight()<540){
-	   //System.o	   //draw(window,Color.white);
+	   //System.o	  
+	   draw(window,Color.white);
 
 
 		//setY
-	   setY(getX()-speed);
+	   setX(getX()-speed);
 		//draw the ball at its new location
 	   draw(window);
 	   
