@@ -36,7 +36,7 @@ public class Pong extends Canvas implements KeyListener, Runnable
 				setBackground(Color.WHITE);
 		setVisible(true);
 
-		ball=new Ball(100,100,10,10, Color.GREEN, 3, 3);
+		ball=new SpeedUpBall(100,100,10,10, Color.GREEN, 3, 3);
 		
 		//instantiate a left Paddle
 		
@@ -160,8 +160,8 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		
 	
 		//see if the ball hits the right paddle
-		if(ball.didCollideRight(rightPaddle)){
-			if( ball.getX() >= rightPaddle.getX()- Math.abs(ball.getXSpeed())){
+		if(ball.didCollideRight(rightWall)){
+			if( ball.getX() >= rightWall.getX()- Math.abs(ball.getXSpeed())){
 				ball.setYSpeed(-1*ball.getYSpeed());
 
 			}

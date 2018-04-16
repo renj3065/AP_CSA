@@ -112,7 +112,7 @@ public class Ball extends Block implements Collidable
 	}
 	
 	public boolean didCollideLeft(Object obj){
-		Paddle temp=(Paddle) obj;
+		Block temp=(Block) obj;
 		if( getX() <= temp.getX() +temp.getWidth()+Math.abs(getXSpeed())){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
 				return true;
@@ -129,7 +129,7 @@ public class Ball extends Block implements Collidable
 	}
 	public boolean didCollideRight(Object obj){
 
-		Paddle temp=(Paddle) obj;
+		Block temp=(Block) obj;
 		if( getX() + getWidth()>= temp.getX()-getXSpeed()){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
 				return true;
@@ -146,7 +146,7 @@ public class Ball extends Block implements Collidable
 	
 	}
 	public boolean didCollideTop(Object x){
-		Paddle temp=(Paddle) x;
+		Block temp=(Block) x;
 		if(getY()<=0){
 			return true;
 		}
@@ -158,7 +158,7 @@ public class Ball extends Block implements Collidable
 		return false;
 	}
 	public boolean didCollideBottom(Object x){
-		Paddle temp=(Paddle) x;
+		Block temp=(Block) x;
 
 		if(getY()+getHeight()>=540){
 			return true;
