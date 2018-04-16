@@ -147,27 +147,52 @@ public class Ball extends Block implements Collidable
 	}
 	public boolean didCollideTop(Object x){
 		Block temp=(Block) x;
+<<<<<<< HEAD
 		if(getY()<=0){
 			return true;
 		}
 		/*if(didCollideRight(temp)||didCollideLeft(temp)){
 			if(getY()<=temp.getY()+temp.getHeight()){
+=======
+		if( getY() <= temp.getY() +temp.getHeight()+Math.abs(getYSpeed())){
+			if(getX()>=temp.getX() && getX()<=temp.getX()+temp.getWidth()){
+				
+>>>>>>> refs/remotes/origin/master
 				return true;
 			}
-		}*/
+			if(getX() +getWidth() >= temp.getX() && getX()+getWidth()<=temp.getX()+temp.getWidth()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
 		return false;
 	}
 	public boolean didCollideBottom(Object x){
 		Block temp=(Block) x;
+<<<<<<< HEAD
 
 		if(getY()+getHeight()>=540){
 			return true;
 		}
 		/*if(didCollideRight(temp)||didCollideLeft(temp)){
 			if(getY()+getHeight()>=temp.getY()){
+=======
+		if( getY() + getHeight()>= temp.getY()-getYSpeed()){
+			if(getX()>=temp.getX() && getX()<=temp.getX()+temp.getWidth()){
+>>>>>>> refs/remotes/origin/master
 				return true;
 			}
-		}*/
+			if(getX() +getWidth() >= temp.getX() && getX()+getWidth()<=temp.getX()+temp.getWidth()){
+				return true;
+			}
+		}
+		
+				//set Y speed to negative of current speed
+				//else
+				//set X speed to negative of current speed				
 		return false;
 	}
 }

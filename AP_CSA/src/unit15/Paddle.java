@@ -94,7 +94,11 @@ public class Paddle extends Block
    public void moveLeftAndDraw(Graphics window)
    {
 	   //if(getY()+getHeight()<540){
+<<<<<<< HEAD
 	   //System.o	   
+=======
+	   //System.o	  
+>>>>>>> refs/remotes/origin/master
 	   draw(window,Color.white);
 
 
