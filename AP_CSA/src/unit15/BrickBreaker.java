@@ -1,5 +1,5 @@
 package unit15;
-<<<<<<< HEAD
+
 
 
 //© A+ Computer Science  -  www.apluscompsci.com
@@ -313,13 +313,13 @@ public void run()
   }
 	}	
 }
-=======
+
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
 //Lab  -
-
+/*
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -573,3 +573,4 @@ public class BrickBreaker extends Canvas implements KeyListener, Runnable
   	}	
 }
 >>>>>>> refs/remotes/origin/master
+*/
