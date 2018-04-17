@@ -806,7 +806,7 @@ Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightA
    */
   public static void main( String args[])
   {
-    Picture pix = new Picture("beach.jpg");
+    Picture pix = new Picture("kehinde.png");
     pix.explore();
   }
   
