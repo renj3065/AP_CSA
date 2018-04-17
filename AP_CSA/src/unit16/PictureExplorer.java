@@ -806,6 +806,9 @@ Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightA
    */
   public static void main( String args[])
   {
+	//DigitalPicture p = new DigitalPicture();
+	//DigitalPicture p = new Picture();
+	//Picture p = new SimplePicture();
     Picture pix = new Picture("kehinde.png");
     pix.explore();
   }
