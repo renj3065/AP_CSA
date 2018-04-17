@@ -809,7 +809,7 @@ Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightA
 	//DigitalPicture p = new DigitalPicture();
 	//DigitalPicture p = new Picture();
 	//Picture p = new SimplePicture();
-    Picture pix = new Picture("kehinde.png");
+    Picture pix = new Picture("beach.jpg");
     pix.explore();
   }
   
