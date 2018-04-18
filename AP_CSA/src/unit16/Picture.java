@@ -264,10 +264,54 @@ if(!(pixelObj.getBlue()>150 && pixelObj.getRed()<30)){
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+        count++;
       }
     }
+    System.out.println("The loop runs "+count+" times.");
   }
-  
+  public void mirrorArms()
+  {
+	  {
+		    Pixel[][] pixels = this.getPixels2D();
+		    Pixel topPixel = null;
+		    Pixel botPixel = null;
+		    int mirrorPoint = 194;
+		    int height = pixels.length;
+		    for (int col = 100; col < 301; col++)
+		    {
+		      for (int row = 160; row < mirrorPoint; row++)
+		      {
+		        topPixel = pixels[row][col];
+		        botPixel = pixels[mirrorPoint-row+mirrorPoint][col];
+		        botPixel.setColor(topPixel.getColor());
+		      }
+		    } 
+		  }
+  }
+  public void mirrorGull()
+  {
+	    int mirrorPoint = 355;
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    int count = 0;
+	    Pixel[][] pixels = this.getPixels2D();
+	    
+	    // loop through the rows
+	    for (int row = 234; row < 326; row++)
+	    {
+	      // loop from 13 to just before the mirror point
+	      for (int col = 230; col < mirrorPoint ; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row]                       
+	                         [mirrorPoint - col + mirrorPoint];
+	        rightPixel.setColor(leftPixel.getColor());
+	        count++;
+	      }
+	    }
+	    System.out.println("The loop runs "+count+" times.");
+	  }
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -298,7 +342,29 @@ if(!(pixelObj.getBlue()>150 && pixelObj.getRed()<30)){
       }
     }   
   }
-
+  public void copy(Picture fromPic, 
+          int startRow, int startCol, int fromStartRow, int fromStartCol, int fromEndRow, int fromEndCol)
+	{
+	Pixel fromPixel = null;
+	Pixel toPixel = null;
+	Pixel[][] toPixels = this.getPixels2D();
+	Pixel[][] fromPixels = fromPic.getPixels2D();
+	for (int fromRow = fromStartRow, toRow = startRow; 
+	  fromRow < fromEndRow &&
+	  toRow < toPixels.length; 
+	  fromRow++, toRow++)
+	{
+	for (int fromCol = fromStartCol, toCol = startCol; 
+	    fromCol < fromEndCol &&
+	    toCol < toPixels[0].length;  
+	    fromCol++, toCol++)
+	{
+	 fromPixel = fromPixels[fromRow][fromCol];
+	 toPixel = toPixels[toRow][toCol];
+	 toPixel.setColor(fromPixel.getColor());
+	}
+	}   
+	}
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
@@ -343,13 +409,24 @@ if(!(pixelObj.getBlue()>150 && pixelObj.getRed()<30)){
     }
   }
   
+  public void myCollage(){
+	 
+	    Picture person1 = new Picture("barbaraS.jpg");
+	    Picture person2 = new Picture("jenny-red.jpg");
+	    person1.keepOnlyBlue();
+	    person2.fixUnderwater();
+	    this.copy(person1,174,168);
+	    this.copy(person2, 180, 396,0,90,180,220);
+	    this.mirrorHorizontalBotToTop();
+	    
+  }
   
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("water.jpg");
+    Picture beach = new Picture("jenny-red.jpg");
     beach.explore();
    // beach.zeroBlue();
     beach.explore();
