@@ -809,8 +809,10 @@ Icon nextIcon = new ImageIcon(DigitalPicture.class.getResource("\\images\\rightA
 	//DigitalPicture p = new DigitalPicture();
 	//DigitalPicture p = new Picture();
 	//Picture p = new SimplePicture();
-    Picture pix = new Picture("beach.jpg");
-    pix.explore();
+	  Picture p = new Picture("kehinde.png");
+	  Picture smallP = p.scale(0.25,0.25);
+	  smallP.write("kehindeSmall.png");
+    smallP.explore();
   }
   
 }
