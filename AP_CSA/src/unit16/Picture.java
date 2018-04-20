@@ -312,6 +312,37 @@ if(!(pixelObj.getBlue()>150 && pixelObj.getRed()<30)){
 	    }
 	    System.out.println("The loop runs "+count+" times.");
 	  }
+  public void blur(int x, int y, int width, int height){
+	  Pixel[][] pixels = this.getPixels2D();
+	  int avgRed;
+	  int avgBlue;
+	  int avgGreen;
+	  
+	  for (int startX=x+1;startX<x+width; startX++)
+	  {
+	  for (int startY=y+1;startY<y+height; startY++)
+	  {
+	 if(startX<pixels.length-2 && startY<pixels[0].length-2){
+		   avgRed=(pixels[startX][startY].getRed()+pixels[startX+1][startY].getRed()+pixels[startX][startY+1].getRed()+pixels[startX-1][startY].getRed()+pixels[startX][startY-1].getRed())/5;
+		   avgBlue=(pixels[startX][startY].getBlue()+pixels[startX+1][startY].getBlue()+pixels[startX][startY+1].getBlue()+pixels[startX-1][startY].getBlue()+pixels[startX][startY-1].getBlue())/5;
+		   avgGreen=(pixels[startX][startY].getGreen()+pixels[startX+1][startY].getGreen()+pixels[startX][startY+1].getGreen()+pixels[startX+1][startY].getGreen()+pixels[startX+1][startY+1].getGreen())/5;
+		   pixels[startX][startY].setRed(avgRed);
+		   pixels[startX][startY].setBlue(avgBlue);
+		   pixels[startX][startY].setGreen(avgGreen);
+		   //pixels[startX+1][startY+1].setRed(avgRed);
+		   //pixels[startX+1][startY+1].setBlue(avgBlue);
+		   //pixels[startX+1][startY+1].setGreen(avgGreen);
+		   //pixels[startX][startY+1].setRed(avgRed);
+		   //pixels[startX][startY+1].setBlue(avgBlue);
+		   //pixels[startX][startY+1].setGreen(avgGreen);
+		   //pixels[startX+1][startY].setRed(avgRed);
+		   //pixels[startX+1][startY].setBlue(avgBlue);
+		   //pixels[startX+1][startY].setGreen(avgGreen);
+		 
+	  }
+	  }
+	  }
+  }
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the
     * current picture
@@ -472,10 +503,9 @@ if(!(pixelObj.getBlue()>150 && pixelObj.getRed()<30)){
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("jenny-red.jpg");
-    beach.explore();
-   // beach.zeroBlue();
-    beach.explore();
+    Picture flower = new Picture("wall.jpg");
+    flower.blur(0,0,300, 300);
+    flower.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this

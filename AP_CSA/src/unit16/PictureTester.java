@@ -130,6 +130,23 @@ public class PictureTester
     swan.edgeDetection2(10);
     swan.explore();
   }
+  public static void testBlur(){
+	  Picture beach= new Picture("beach.jpg");
+	  beach.explore();
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+	 beach.blur(0, 0, 470, 640);
+
+
+	 
+
+	 beach.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -155,13 +172,14 @@ public class PictureTester
     //testCollage();
 	//testMyCollage();
     //testCopy();
-    testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection();
+    //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testBlur();
   }
 }
