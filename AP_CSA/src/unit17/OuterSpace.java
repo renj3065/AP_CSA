@@ -15,14 +15,13 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alienOne;
-	private Alien alienTwo;
+	//private Alien alienOne;
+	//private Alien alienTwo;
 
-	/* uncomment once you are ready for this part
-	 *
+	
 	private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
-	*/
+	
 
 	private boolean[] keys;
 	private BufferedImage back;
@@ -35,8 +34,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other stuff
 		ship=new Ship(300,400,4);
-		alienOne=new Alien(100,100,3);
-		alienTwo=new Alien(400,100,3);
+		aliens=new ArrayList<Alien>();
+		shots=new ArrayList<Ammo>();
+		aliens.add(new Alien(100,100,3));
+		aliens.add(new Alien(200,100,3));
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -68,31 +69,75 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
+		for(Alien a: aliens){
+			a.draw(graphToBack);
+		}
+		for(Ammo s: shots){
+			s.draw(graphToBack);
+		}
+		boolean  first=true;
+		int click=0;
 
+		for(Alien a: aliens){
+			//if(first){
+			a.move("LEFT");
+			//}
+		}
+		first=false;
+		if(ship.getX()+10>0){
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
 		}
-		else if(keys[1] == true)
+		}
+		if(ship.getX()<700){
+		if(keys[1] == true)
 		{
 			ship.move("RIGHT");
 		}
-		else if(keys[2] == true)
-		{
-			ship.move("DOWN");
 		}
-		else if(keys[3] == true)
+		if(ship.getY()>0){
+		if(keys[2] == true)
 		{
 			ship.move("UP");
+			System.out.println(ship.getY());
+		}
+		}
+		if(ship.getY()<440){
+		if(keys[3] == true)
+		{
+			ship.move("DOWN");
+			System.out.println(ship.getY());
+
+		}
+		}
+		
+		if(keys[4] == true)
+		{
+			System.out.println(ship.getX());
+			shots.add(new Ammo(ship.getX(),ship.getY(),5));
+
 		}
 		//add code to move stuff
-
-
+		
 		//add in collision detection
-
-
+		for(Alien a: aliens){
+		if(a.getX()<0 || a.getX()>750){
+			a.setSpeed(-a.getSpeed());
+		}
+		}
+		for(Ammo s: shots){
+			if(s.getY()<-10){
+				s.setSpeed(0);
+			}
+		}
+		for(Ammo s: shots){
+			for(Alien a: aliens){
+				if(s.getY()==a.getY()+50 && (s.getX()>=a.getX() && s.getX()<a.getX()+50)){
+					a.setPos(-100, -100);
+				}
+			}
+		}
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
