@@ -18,7 +18,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	//private Alien alienOne;
 	//private Alien alienTwo;
-
+	private int score;
 	
 	private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
@@ -32,11 +32,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	public OuterSpace()
 	{
 		setBackground(Color.black);
-
+		score=0;
 		keys = new boolean[5];
 		r=new Random();
 		//instantiate other stuff
-		ship=new Ship(300,400,4);
+		ship=new Ship(300,400,3);
 		aliens=new ArrayList<Alien>();
 		shots=new ArrayList<Ammo>();
 		shots2=new ArrayList<Ammo>();
@@ -59,7 +59,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	{
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
-
+		 
 		//take a snap shop of the current screen and same it as an image
 		//that is the exact same width and height as the current screen
 		if(back==null)
@@ -74,9 +74,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		ship.draw(graphToBack);
-		for(Alien a: aliens){
-			a.draw(graphToBack);
-		}
+		//for(Alien a: aliens){
+			//a.draw(graphToBack);
+		//}
 		squad.draw(graphToBack);
 		for(Ammo s: shots){
 			s.draw(graphToBack);
@@ -167,8 +167,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		for(Ammo s: shots){
 			for(Alien[] row: squad.returnAliens()){
 				for(Alien a: row){
-					if((s.getY()<=a.getY()+80 && s.getY()>=a.getY()+50)&& (s.getX()>=a.getX() && s.getX()<a.getX()+80)){
+					if((s.getY()<=a.getY()+80 && s.getY()>=a.getY()+50)&& (s.getX()>=a.getX()-40 && s.getX()<a.getX()+50)){
+						s.setPos(-100, -100);
 						a.setPos(-100, -100);
+						score++;
 					}	
 					}
 
@@ -178,13 +180,22 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 ;
 			for(Alien[] row: squad.returnAliens()){
 				for(Alien a: row){
+					if(r.nextInt(5)==0){
 					shots2.add(new Ammo(a.getX(),a.getY(),-2));
 					}
-
+				}
 			}
 
 		}
-	
+		for(Ammo s: shots2){
+			if(s.getY()+20>=ship.getY() && s.getY()<=ship.getY()+80){
+				if(ship.getX()-25<s.getX() && ship.getX()+30>s.getX()){
+					s.setPos(-100, -100);
+					ship.setPos(360,500);
+					score-=1;
+				}
+			}
+		}
 		//experimental collide
 		/*if( getX() + getWidth()>= temp.getX()-getXSpeed()){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
@@ -203,7 +214,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//experimental collide
 
-		
+		graphToBack.drawString("Points: "+score, 300, 500);
 		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
