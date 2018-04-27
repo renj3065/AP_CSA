@@ -23,9 +23,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
 	private ArrayList<Ammo> shots2;
-
+	private boolean poweredUp;
 	private Random r;
 	private Aliens squad;
+	private Powerup shield;
+	
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -36,6 +38,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		keys = new boolean[5];
 		r=new Random();
 		//instantiate other stuff
+		poweredUp=false;
+		shield=new Powerup();
 		ship=new Ship(300,400,3);
 		aliens=new ArrayList<Alien>();
 		shots=new ArrayList<Ammo>();
@@ -73,7 +77,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
-		ship.draw(graphToBack);
+		if(!poweredUp){
+			ship.draw(graphToBack);
+		}
+		else{
+			ship.draw2(graphToBack);
+		}
+		shield.draw(graphToBack);
 		//for(Alien a: aliens){
 			//a.draw(graphToBack);
 		//}
@@ -187,15 +197,28 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			}
 
 		}
+		if(shield.getY()+40>=ship.getY() && shield.getY()<=ship.getY()+80){
+			if(ship.getX()-25<shield.getX() && shield.getX()+30>shield.getX()){
+				shield.setPos(-100, -100);
+				//ship.setPos(360,500);
+				poweredUp=true;
+			}
+		
+	}
 		for(Ammo s: shots2){
 			if(s.getY()+20>=ship.getY() && s.getY()<=ship.getY()+80){
 				if(ship.getX()-25<s.getX() && ship.getX()+30>s.getX()){
 					s.setPos(-100, -100);
-					ship.setPos(360,500);
+					//ship.setPos(360,500);
+					if(!poweredUp){
 					score-=1;
+					}
 				}
 			}
 		}
+		
+		
+		
 		//experimental collide
 		/*if( getX() + getWidth()>= temp.getX()-getXSpeed()){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
@@ -215,7 +238,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//experimental collide
 
 		graphToBack.drawString("Points: "+score, 300, 500);
-		
+
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

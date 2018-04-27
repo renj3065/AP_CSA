@@ -11,6 +11,7 @@ public class Ship extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private Image image2;
 
 	public Ship()
 	{
@@ -29,6 +30,8 @@ public class Ship extends MovingThing
 		try
 		{
 			image = ImageIO.read(new File("src\\unit17\\ship.jpg"));
+			image2 = ImageIO.read(new File("src\\unit17\\shipShield.jpg"));
+
 		}
 		catch(Exception e)
 		{
@@ -51,7 +54,10 @@ System.out.println("Cannot open ship");
 	{
    	window.drawImage(image,getX(),getY(),80,80,null);
 	}
-
+	public void draw2( Graphics window )
+	{
+   	window.drawImage(image2,getX(),getY(),80,80,null);
+	}
 	public String toString()
 	{
 		return super.toString() + ","+getSpeed();
