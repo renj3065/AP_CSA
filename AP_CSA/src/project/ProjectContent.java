@@ -18,28 +18,44 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 	private Panda ship;
 	private Background ground;
 	private Random r;
-	//private Alien alienOne;
-	//private Alien alienTwo;
+	private int stage;
 	private int score;
-	
+	private int lives;
 	/*private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
 	private ArrayList<Ammo> shots2;
 
 	
 	private Aliens squad;*/
+	
+	private int timer;
+	private int timer2;
+
+	private ArrayList<Square> squares;
+	private ArrayList<Square> squares2;
 	private boolean[] keys;
 	private BufferedImage back;
-
+	private int[] possX;
 	public ProjectContent()
 	{
 		setBackground(Color.black);
 		score=0;
+		stage=0;
+		lives=5;
 		keys = new boolean[5];
 		r=new Random();
 		//instantiate other stuff
 		ship=new Panda(300,400,3);
 		ground=new Background(0,475);
+		squares=new ArrayList<Square>();
+		squares2=new ArrayList<Square>();
+
+		timer=0;
+		timer2=0;
+		possX=new int[10];
+		for(int x=0;x<possX.length;x++){
+			possX[x]=x*80;
+		}
 		/*aliens=new ArrayList<Alien>();
 		shots=new ArrayList<Ammo>();
 		shots2=new ArrayList<Ammo>();
@@ -72,19 +88,49 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
 
-		graphToBack.setColor(Color.BLUE);
-		graphToBack.drawString("StarFighter ", 25, 50 );
+		
 		graphToBack.setColor(Color.white);
 		graphToBack.fillRect(0,0,800,600);
+		
+		if(stage==0){
+			graphToBack.setColor(Color.blue);
+
+			graphToBack.drawString("Welcome to Falling Squares\nCollect green squares to win points\nRed Squares cause you to lose lives\nPress space to begin", 300,300);
+			if(keys[4] == true)
+			{
+				stage=1;
+
+			}
+			
+		}
+		
+		if(stage==1){
 		ship.draw(graphToBack);
 		ground.draw(graphToBack);
+		
+		timer++;
+		timer2++;
+		if(timer%50==0){
+			timer=0;
+			squares.add(new Square(possX[r.nextInt(10)],0,2,false));
+		}
+		if(timer2%250==0){
+			timer2=0;
+			squares2.add(new Square(possX[r.nextInt(10)],0,3,true));
+		}
+
+		for(Square s: squares){
+			s.draw(graphToBack);
+		}
+		for(Square s: squares2){
+			s.draw(graphToBack);
+		}
 		//for(Alien a: aliens){
 			//a.draw(graphToBack);
 		//}
 		/*squad.draw(graphToBack);
-		for(Ammo s: shots){
-			s.draw(graphToBack);
-		}
+		
+		
 		for(Ammo s: shots2){
 			s.draw(graphToBack);
 		}
@@ -103,6 +149,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			//}
 		}
 		first=false;*/
+		
 		if(ship.getX()>0){
 		if(keys[0] == true)
 		{
@@ -131,13 +178,6 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		}
 		}*/
 		
-		if(keys[4] == true)
-		{
-			System.out.println(ship.getX());
-			//hots.add(new Ammo(ship.getX(),ship.getY(),5));
-			keys[4]=false;
-
-		}
 		
 		//add code to move stuff
 		
@@ -191,15 +231,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			}
 
 		}
-		for(Ammo s: shots2){
-			if(s.getY()+20>=ship.getY() && s.getY()<=ship.getY()+80){
-				if(ship.getX()-25<s.getX() && ship.getX()+30>s.getX()){
-					s.setPos(-100, -100);
-					ship.setPos(360,500);
-					score-=1;
-				}
-			}
-		}*/
+		*/
 		//experimental collide
 		/*if( getX() + getWidth()>= temp.getX()-getXSpeed()){
 			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
@@ -217,9 +249,28 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		*/
 
 		//experimental collide
-
+		for(Square s: squares){
+			if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+				if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+					s.setPos(-100, -100);
+					
+					lives--;
+				}
+			}
+		}
+		for(Square s: squares2){
+			if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+				if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+					s.setPos(-100, -100);
+					
+					score++;
+				}
+			}
+		}
 		graphToBack.drawString("Points: "+score, 300, 500);
-		
+		graphToBack.drawString("Lives: "+lives, 300, 550);
+
+		}
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
@@ -234,7 +285,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		{
 			keys[1] = true;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_UP)
+		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 		{
 			keys[2] = true;
 		}
