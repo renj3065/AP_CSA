@@ -21,6 +21,9 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 	private int stage;
 	private int score;
 	private int lives;
+	
+	private Heart lifeUp;
+
 	/*private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
 	private ArrayList<Ammo> shots2;
@@ -41,7 +44,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 		score=0;
 		stage=0;
-		lives=5;
+		lives=10;
 		keys = new boolean[5];
 		r=new Random();
 		//instantiate other stuff
@@ -49,12 +52,12 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		ground=new Background(0,475);
 		squares=new ArrayList<Square>();
 		squares2=new ArrayList<Square>();
-
+		lifeUp=new Heart(360,0,1);
 		timer=0;
 		timer2=0;
-		possX=new int[10];
+		possX=new int[9];
 		for(int x=0;x<possX.length;x++){
-			possX[x]=x*80;
+			possX[x]=x*90;
 		}
 		/*aliens=new ArrayList<Alien>();
 		shots=new ArrayList<Ammo>();
@@ -94,12 +97,20 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		
 		if(stage==0){
 			graphToBack.setColor(Color.blue);
+			graphToBack.drawString("Johnny Ren- Period 4 APCSA (SHOUTOUT TO ALL THE PEARS!)", 300,50);
 
-			graphToBack.drawString("Welcome to Falling Squares\nCollect green squares to win points\nRed Squares cause you to lose lives\nPress space to begin", 300,300);
+			graphToBack.drawString("Welcome to Falling Squares", 300,100);
+			graphToBack.drawString("Collect Green Squares to earn points", 300,150);
+			graphToBack.drawString("Collect 6 points to beat level 1", 300,200);
+			graphToBack.drawString("Collect 8 points to beat level 2", 300,250);
+			graphToBack.drawString("Collect 10 points to beat level 3", 300,300);
+
+			graphToBack.drawString("Avoid red squares; they cause you to lose lives", 300,350);
+			graphToBack.drawString("Press Space to Begin", 300,400);
+			
 			if(keys[4] == true)
 			{
 				stage=1;
-
 			}
 			
 		}
@@ -110,13 +121,13 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		
 		timer++;
 		timer2++;
-		if(timer%50==0){
+		if(timer%100==0){
 			timer=0;
-			squares.add(new Square(possX[r.nextInt(10)],0,2,false));
+			squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
 		}
 		if(timer2%250==0){
 			timer2=0;
-			squares2.add(new Square(possX[r.nextInt(10)],0,3,true));
+			squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
 		}
 
 		for(Square s: squares){
@@ -125,30 +136,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		for(Square s: squares2){
 			s.draw(graphToBack);
 		}
-		//for(Alien a: aliens){
-			//a.draw(graphToBack);
-		//}
-		/*squad.draw(graphToBack);
 		
-		
-		for(Ammo s: shots2){
-			s.draw(graphToBack);
-		}
-		boolean  first=true;
-		int click=0;
-		for(Alien[] row: squad.returnAliens()){
-			for(Alien a: row){
-			   	a.move("LEFT");
-			}
-
-		}
-		
-		for(Alien a: aliens){
-			//if(first){
-			a.move("LEFT");
-			//}
-		}
-		first=false;*/
 		
 		if(ship.getX()>0){
 		if(keys[0] == true)
@@ -162,93 +150,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			ship.move("RIGHT");
 		}
 		}
-		/*if(ship.getY()>0){
-		if(keys[2] == true)
-		{
-			ship.move("UP");
-			System.out.println(ship.getY());
-		}
-		}
-		if(ship.getY()<440){
-		if(keys[3] == true)
-		{
-			ship.move("DOWN");
-			System.out.println(ship.getY());
-
-		}
-		}*/
 		
-		
-		//add code to move stuff
-		
-		//add in collision detection
-		/*for(Alien a: aliens){
-			if(a.getX()<0 || a.getX()>750){
-				a.setSpeed(-a.getSpeed());
-			}			
-			
-		}
-		for(Alien[] row: squad.returnAliens()){
-			for(Alien a: row){
-				if(a.getX()<0 || a.getX()>750){
-					a.setSpeed(-a.getSpeed());
-				}			
-				}
-
-		}
-		for(Ammo s: shots){
-			if(s.getY()<-10){
-				s.setSpeed(0);
-			}
-		}
-		for(Ammo s: shots){
-			for(Alien a: aliens){
-				if(s.getY()==a.getY()+80 && (s.getX()>=a.getX() && s.getX()<a.getX()+80)){
-					a.setPos(-100, -100);
-				}
-			}
-		}
-		for(Ammo s: shots){
-			for(Alien[] row: squad.returnAliens()){
-				for(Alien a: row){
-					if((s.getY()<=a.getY()+80 && s.getY()>=a.getY()+50)&& (s.getX()>=a.getX()-40 && s.getX()<a.getX()+50)){
-						s.setPos(-100, -100);
-						a.setPos(-100, -100);
-						score++;
-					}	
-					}
-
-			}
-		}
-		if(r.nextInt(1000000)%100==0){
-;
-			for(Alien[] row: squad.returnAliens()){
-				for(Alien a: row){
-					if(r.nextInt(5)==0){
-					shots2.add(new Ammo(a.getX(),a.getY(),-2));
-					}
-				}
-			}
-
-		}
-		*/
-		//experimental collide
-		/*if( getX() + getWidth()>= temp.getX()-getXSpeed()){
-			if(getY()>=temp.getY() && getY()<=temp.getY()+temp.getHeight()){
-				if( ball.getX() >= rightWall.getX()- Math.abs(ball.getXSpeed())){
-					
-
-				}			}
-			if(getY() +getHeight() >= temp.getY() && getY()+getHeight()<=temp.getY()+temp.getHeight()){
-				if( ball.getX() >= rightWall.getX()- Math.abs(ball.getXSpeed())){
-					
-
-				}			}
-			}
-		}
-		*/
-
-		//experimental collide
 		for(Square s: squares){
 			if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
 				if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
@@ -269,6 +171,236 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		}
 		graphToBack.drawString("Points: "+score, 300, 500);
 		graphToBack.drawString("Lives: "+lives, 300, 550);
+		if(lives<=0){
+			stage=-1;
+		}
+		if(score>=6){
+			stage=2;
+			score=0;
+
+		}
+		}
+		
+		if(stage==2){
+			graphToBack.setColor(Color.blue);
+
+			graphToBack.drawString("You beat level 1. Collect the heart for a life restore.", 100, 100);
+
+			squares.clear();
+			ship.draw(graphToBack);
+			ground.draw(graphToBack);
+			lifeUp.draw(graphToBack);
+
+			if(ship.getX()>0){
+			if(keys[0] == true)
+			{
+				ship.move("LEFT");
+			}
+			}
+			if(ship.getX()<700){
+			if(keys[1] == true)
+			{
+				ship.move("RIGHT");
+			}
+			}
+			
+			if(lifeUp.getY()+80>=ship.getY() && lifeUp.getY()<=ship.getY()+80){
+				if(lifeUp.getX()+80>=ship.getX() && ship.getX()+80>lifeUp.getX()){
+					lifeUp.setPos(-100, 1000);
+					
+					lives=10;
+				}
+			}
+			if(lifeUp.getY()>999){
+				stage=3;
+				lifeUp.setPos(360, 0);
+			}
+
+			
+			timer=0;
+			timer2=0;
+			graphToBack.setColor(Color.white);
+
+			graphToBack.drawString("Points: "+score, 300, 500);
+			graphToBack.drawString("Lives: "+lives, 300, 550);
+			squares.clear();
+		}
+		if(stage==3){
+			ship.draw(graphToBack);
+			ground.draw(graphToBack);
+			
+			timer++;
+			timer2++;
+			if(timer%75==0){
+				timer=0;
+				squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
+			}
+			if(timer2%250==0){
+				timer2=0;
+				squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
+			}
+
+			for(Square s: squares){
+				s.draw(graphToBack);
+			}
+			for(Square s: squares2){
+				s.draw(graphToBack);
+			}
+			
+			
+			if(ship.getX()>0){
+			if(keys[0] == true)
+			{
+				ship.move("LEFT");
+			}
+			}
+			if(ship.getX()<700){
+			if(keys[1] == true)
+			{
+				ship.move("RIGHT");
+			}
+			}
+			
+			for(Square s: squares){
+				if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+					if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+						s.setPos(-100, -100);
+						
+						lives--;
+					}
+				}
+			}
+			for(Square s: squares2){
+				if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+					if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+						s.setPos(-100, -100);
+						
+						score++;
+					}
+				}
+			}
+			graphToBack.drawString("Points: "+score, 300, 500);
+			graphToBack.drawString("Lives: "+lives, 300, 550);
+			if(lives<=0){
+				stage=-1;
+			}
+			if(score>=8){
+				stage=4;
+				score=0;
+
+			}
+		}
+		if(stage==4){
+			graphToBack.setColor(Color.blue);
+
+			graphToBack.drawString("You beat level 2. Collect the heart for a life restore.", 100, 100);
+
+			squares.clear();
+			ship.draw(graphToBack);
+			ground.draw(graphToBack);
+			lifeUp.draw(graphToBack);
+
+			if(ship.getX()>0){
+			if(keys[0] == true)
+			{
+				ship.move("LEFT");
+			}
+			}
+			if(ship.getX()<700){
+			if(keys[1] == true)
+			{
+				ship.move("RIGHT");
+			}
+			}
+			
+			if(lifeUp.getY()+80>=ship.getY() && lifeUp.getY()<=ship.getY()+80){
+				if(lifeUp.getX()+80>=ship.getX() && ship.getX()+80>lifeUp.getX()){
+					lifeUp.setPos(-100, 1000);
+					
+					lives=10;
+				}
+			}
+			if(lifeUp.getY()>999){
+				stage=5;
+			}
+
+			
+			timer=0;
+			timer2=0;
+			graphToBack.setColor(Color.white);
+
+			graphToBack.drawString("Points: "+score, 300, 500);
+			graphToBack.drawString("Lives: "+lives, 300, 550);
+			squares.clear();
+		}
+		if(stage==5){
+			ship.draw(graphToBack);
+			ground.draw(graphToBack);
+			
+			timer++;
+			timer2++;
+			if(timer%50==0){
+				timer=0;
+				squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
+			}
+			if(timer2%200==0){
+				timer2=0;
+				squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
+			}
+
+			for(Square s: squares){
+				s.draw(graphToBack);
+			}
+			for(Square s: squares2){
+				s.draw(graphToBack);
+			}
+			
+			
+			if(ship.getX()>0){
+			if(keys[0] == true)
+			{
+				ship.move("LEFT");
+			}
+			}
+			if(ship.getX()<700){
+			if(keys[1] == true)
+			{
+				ship.move("RIGHT");
+			}
+			}
+			
+			for(Square s: squares){
+				if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+					if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+						s.setPos(-100, -100);
+						
+						lives--;
+					}
+				}
+			}
+			for(Square s: squares2){
+				if(s.getY()+80>=ship.getY() && s.getY()<=ship.getY()+80){
+					if(s.getX()+80>=ship.getX() && ship.getX()+80>s.getX()){
+						s.setPos(-100, -100);
+						
+						score++;
+					}
+				}
+			}
+			graphToBack.drawString("Points: "+score, 300, 500);
+			graphToBack.drawString("Lives: "+lives, 300, 550);
+			if(lives<=0){
+				stage=-1;
+			}
+			if(score>=10){
+				stage=6;
+				score=0;
+
+			}
+		}
+		if(stage==-1){
+			graphToBack.setColor(Color.blue);
+			graphToBack.drawString("The kingdom has fallen. The squares have taken over. All is lost.", 300, 550);
 
 		}
 		twoDGraph.drawImage(back, null, 0, 0);
