@@ -23,7 +23,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 	private int lives;
 	
 	private Heart lifeUp;
-
+	private Theme theme;
 	/*private ArrayList<Alien> aliens;
 	private ArrayList<Ammo> shots;
 	private ArrayList<Ammo> shots2;
@@ -50,6 +50,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		//instantiate other stuff
 		ship=new Panda(300,400,3);
 		ground=new Background(0,475);
+		theme=new Theme(0,0);
 		squares=new ArrayList<Square>();
 		squares2=new ArrayList<Square>();
 		lifeUp=new Heart(360,0,1);
@@ -96,6 +97,8 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		graphToBack.fillRect(0,0,800,600);
 		
 		if(stage==0){
+			lives=10;
+			score=0;
 			graphToBack.setColor(Color.blue);
 			graphToBack.drawString("Johnny Ren- Period 4 APCSA (SHOUTOUT TO ALL THE PEARS!)", 300,50);
 
@@ -116,6 +119,7 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		}
 		
 		if(stage==1){
+		theme.draw(graphToBack, 1);
 		ship.draw(graphToBack);
 		ground.draw(graphToBack);
 		
@@ -182,11 +186,14 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		}
 		
 		if(stage==2){
+			theme.draw(graphToBack, 4);
+
 			graphToBack.setColor(Color.blue);
 
 			graphToBack.drawString("You beat level 1. Collect the heart for a life restore.", 100, 100);
 
 			squares.clear();
+			squares2.clear();
 			ship.draw(graphToBack);
 			ground.draw(graphToBack);
 			lifeUp.draw(graphToBack);
@@ -226,6 +233,8 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			squares.clear();
 		}
 		if(stage==3){
+			theme.draw(graphToBack, 2);
+
 			ship.draw(graphToBack);
 			ground.draw(graphToBack);
 			
@@ -291,11 +300,14 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			}
 		}
 		if(stage==4){
+			theme.draw(graphToBack, 4);
+
 			graphToBack.setColor(Color.blue);
 
 			graphToBack.drawString("You beat level 2. Collect the heart for a life restore.", 100, 100);
 
 			squares.clear();
+			squares2.clear();
 			ship.draw(graphToBack);
 			ground.draw(graphToBack);
 			lifeUp.draw(graphToBack);
@@ -334,6 +346,8 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			squares.clear();
 		}
 		if(stage==5){
+			theme.draw(graphToBack, 3);
+
 			ship.draw(graphToBack);
 			ground.draw(graphToBack);
 			
@@ -395,6 +409,19 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			if(score>=10){
 				stage=6;
 				score=0;
+			}
+		}
+		if(stage==6){
+			graphToBack.setColor(Color.BLUE);
+			graphToBack.drawString("You have won! Rejoice!", 300, 300);
+			graphToBack.drawString("To play again press space.", 300, 350);
+			squares.clear();
+			squares2.clear();
+			if(keys[4] == true)
+			{
+				keys[4]=false;
+				stage=0;
+				lifeUp.setPos(360, 0);
 
 			}
 		}

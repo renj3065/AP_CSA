@@ -28,7 +28,8 @@ public class Panda extends MovingThing
 		speed=s;
 		try
 		{
-			image = ImageIO.read(new File("src\\project\\Square-Main.jpg"));
+			//image = ImageIO.read(new File("src\\project\\Square-Main.jpg"));
+			image = ImageIO.read(new File("src\\project\\hero.png"));
 		}
 		catch(Exception e)
 		{
