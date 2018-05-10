@@ -10,7 +10,7 @@ public class Project extends JFrame
 
 	public Project()
 	{
-		super("STARFIGHTER");
+		super("FALLING SQUARES");
 		setSize(WIDTH,HEIGHT);
 
 		ProjectContent theGame = new ProjectContent();

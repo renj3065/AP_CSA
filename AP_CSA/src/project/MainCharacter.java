@@ -7,22 +7,22 @@ import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Panda extends MovingThing
+public class MainCharacter extends MovingThing
 {
 	private int speed;
 	private Image image;
 
-	public Panda()
+	public MainCharacter()
 	{
 		this(0,0,0);
 	}
 
-	public Panda(int x, int y)
+	public MainCharacter(int x, int y)
 	{
 		this(x,y,0);
 	}
 
-	public Panda(int x, int y, int s)
+	public MainCharacter(int x, int y, int s)
 	{
 		super(x, y);
 		speed=s;

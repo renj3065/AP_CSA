@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class ProjectContent extends Canvas implements KeyListener, Runnable
 {
-	private Panda ship;
+	private MainCharacter ship;
 	private Background ground;
 	private Random r;
 	private int stage;
@@ -34,8 +34,8 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 	private int timer;
 	private int timer2;
 
-	private ArrayList<Square> squares;
-	private ArrayList<Square> squares2;
+	private ArrayList<BadSquare> squares;
+	private ArrayList<GoodSquare> squares2;
 	private boolean[] keys;
 	private BufferedImage back;
 	private int[] possX;
@@ -48,11 +48,11 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		keys = new boolean[5];
 		r=new Random();
 		//instantiate other stuff
-		ship=new Panda(300,400,3);
+		ship=new MainCharacter(300,400,3);
 		ground=new Background(0,475);
 		theme=new Theme(0,0);
-		squares=new ArrayList<Square>();
-		squares2=new ArrayList<Square>();
+		squares=new ArrayList<BadSquare>();
+		squares2=new ArrayList<GoodSquare>();
 		lifeUp=new Heart(360,0,1);
 		timer=0;
 		timer2=0;
@@ -127,11 +127,11 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		timer2++;
 		if(timer%100==0){
 			timer=0;
-			squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
+			squares.add(new BadSquare(possX[r.nextInt(possX.length)],0,2));
 		}
 		if(timer2%250==0){
 			timer2=0;
-			squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
+			squares2.add(new GoodSquare(possX[r.nextInt(possX.length)],0,3));
 		}
 
 		for(Square s: squares){
@@ -242,11 +242,11 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			timer2++;
 			if(timer%75==0){
 				timer=0;
-				squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
+				squares.add(new BadSquare(possX[r.nextInt(possX.length)],0,2));
 			}
 			if(timer2%250==0){
 				timer2=0;
-				squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
+				squares2.add(new GoodSquare(possX[r.nextInt(possX.length)],0,3));
 			}
 
 			for(Square s: squares){
@@ -355,11 +355,11 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 			timer2++;
 			if(timer%50==0){
 				timer=0;
-				squares.add(new Square(possX[r.nextInt(possX.length)],0,2,false));
+				squares.add(new BadSquare(possX[r.nextInt(possX.length)],0,2));
 			}
 			if(timer2%200==0){
 				timer2=0;
-				squares2.add(new Square(possX[r.nextInt(possX.length)],0,3,true));
+				squares2.add(new GoodSquare(possX[r.nextInt(possX.length)],0,3));
 			}
 
 			for(Square s: squares){

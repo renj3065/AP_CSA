@@ -43,8 +43,18 @@ public class IntroClass {
 			System.out.println("dude");
 		}
 		System.out.println(r);
+		
+		int a=5;
+		int b=3;
+		int c=5;
+
+		if (a==b || b==c || c==a){
+			System.out.println("I am wrong!");
 		}
+		}
+		
 	
 		
 }
+
 
