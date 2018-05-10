@@ -427,8 +427,16 @@ public class ProjectContent extends Canvas implements KeyListener, Runnable
 		}
 		if(stage==-1){
 			graphToBack.setColor(Color.blue);
-			graphToBack.drawString("The kingdom has fallen. The squares have taken over. All is lost.", 300, 550);
+			graphToBack.drawString("To play again press space.", 300, 350);
 
+			graphToBack.drawString("The kingdom has fallen. The squares have taken over. All is lost.", 300, 550);
+			if(keys[4] == true)
+			{
+				keys[4]=false;
+				stage=0;
+				lifeUp.setPos(360, 0);
+
+			}
 		}
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
